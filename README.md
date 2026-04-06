@@ -331,6 +331,7 @@ Additional environment variables:
 | `ONWATCH_HOST`           | Bind address (default: `0.0.0.0`)                      |
 | `ONWATCH_API_INTEGRATIONS_ENABLED` | Enable or disable API Integrations ingestion (default: `true`) |
 | `ONWATCH_API_INTEGRATIONS_DIR`     | Directory onWatch tails for API Integrations JSONL events |
+| `ONWATCH_API_INTEGRATIONS_RETENTION` | How long API Integrations rows are kept in SQLite (default: `1440h` = 60 days, `0` disables pruning) |
 
 CLI flags override environment variables.
 

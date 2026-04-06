@@ -46,9 +46,17 @@ Optional environment variables:
 ```env
 ONWATCH_API_INTEGRATIONS_ENABLED=true
 ONWATCH_API_INTEGRATIONS_DIR=~/.onwatch/api-integrations
+ONWATCH_API_INTEGRATIONS_RETENTION=1440h
 ```
 
 If you change `ONWATCH_API_INTEGRATIONS_DIR`, point your scripts and onWatch at the same directory.
+
+Retention notes:
+
+- `ONWATCH_API_INTEGRATIONS_RETENTION` controls how long ingested API Integrations events are kept in SQLite
+- default retention is `1440h` which is 60 days
+- set `ONWATCH_API_INTEGRATIONS_RETENTION=0` to disable database pruning
+- pruning applies only to the SQLite table, not to the source `.jsonl` files
 
 ## Event Format
 
@@ -244,3 +252,11 @@ Custom API Integrations data is stored in separate SQLite tables from the existi
 - `api_integration_ingest_state`
 
 This means Custom API Integrations telemetry is identifiable and queryable independently from provider quota snapshots and reset cycles.
+
+Database retention behavior:
+
+- onWatch automatically prunes old rows from `api_integration_usage_events`
+- the pruning cutoff is controlled by `ONWATCH_API_INTEGRATIONS_RETENTION`
+- the default is 60 days
+- source `.jsonl` files are not pruned or compacted by onWatch
+- if you want smaller source logs, rotate or remove the JSONL files manually
