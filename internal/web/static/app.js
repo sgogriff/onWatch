@@ -5080,7 +5080,6 @@ function renderAPIIntegrationsHealth() {
     <div class="api-integrations-health-copy">
       <p><strong>Rotating files:</strong> Move or rename the active <code>.jsonl</code> file, then let your script create a new one. That starts a fresh source log for new events. Historical charts remain in the database until you clear or replace the stored onWatch data.</p>
     </div>
-    </div>
   `;
 
   const alerts = Array.isArray(health.alerts) ? health.alerts : [];
